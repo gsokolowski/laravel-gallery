@@ -55,7 +55,7 @@ class ImportImages extends Command
             $path = public_path('images/' . end($pathFileNameArray));
             if(Image::make($pathFileName)->resize(800, 600)->save($path, 85)) {
                 $gallery = new Gallery();
-                $gallery->title = join(' ', $faker->words(3));
+                $gallery->title = join(' ', $faker->words(2));
                 $gallery->image = end($pathFileNameArray);
                 $gallery->save();
 
