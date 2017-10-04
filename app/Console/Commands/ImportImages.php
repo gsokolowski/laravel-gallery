@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+
 use App\Gallery;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Console\Command;
@@ -41,11 +42,6 @@ class ImportImages extends Command
     public function handle()
     {
 
-        // 1. read image folder  /public/originalimages
-        // 2. get list of all images
-        // 3. copy image by image to folder /public/images (optimise)
-        // 4. add image name by name to db:gallery column title with some random title
-
         // configure with favored image driver (gd by default)
         Image::configure(array('driver' => 'gd'));
 
@@ -57,15 +53,16 @@ class ImportImages extends Command
 
             $pathFileNameArray = explode('/',$pathFileName);
             $path = public_path('images/' . end($pathFileNameArray));
-            Image::make($pathFileName)->resize(800, 600)->save($path, 85);
+            if(Image::make($pathFileName)->resize(800, 600)->save($path, 85)) {
+                $gallery = new Gallery();
+                $gallery->title = join(' ', $faker->words(3));
+                $gallery->image = end($pathFileNameArray);
+                $gallery->save();
 
-            $gallery = new Gallery();
-            $gallery->title = join(' ', $faker->words(3));
-            $gallery->image = end($pathFileNameArray);
-            $gallery->save();
-
+                echo "Image ". end($pathFileNameArray) ." imported....\n";
+            } else {
+                echo "Image ". end($pathFileNameArray) ." not imported!!!!\n";
+            }
         }
-
-        echo "Import Images \n";
     }
 }

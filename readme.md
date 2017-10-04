@@ -8,6 +8,7 @@
 - Images will be re-sized and optimised and dropped to /public/images directory of laravel project
 
 
+
 ## Gallery Controller
 
 - to get list of active images
@@ -22,3 +23,7 @@
 - to restore soft deleted image
 // put http://laravel-gallery.local/api/gallery/4/restore
 
+
+## You may need
+- php artisan migrate:refresh
+- before you import images again

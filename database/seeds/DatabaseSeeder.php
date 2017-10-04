@@ -16,15 +16,14 @@ class DatabaseSeeder extends Seeder
     {
 
         // - disable database FOREIGN_KEY_CHECKS
-//        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-//
-//
-//        // Clear db through model
-//        Gallery::truncate();
-//
-//        // or through DB
-//        // DB::table('galleries')->truncate();
-//
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+        // Clear db through model
+        Gallery::truncate();
+
+        // or through DB
+        // DB::table('galleries')->truncate();
+
 //        $imageQuantity = 6;
 //
 //        // use factory to create inserts
