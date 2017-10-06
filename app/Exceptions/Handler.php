@@ -100,14 +100,15 @@ class Handler extends ExceptionHandler
         // Handling Unexpected Exceptions
         // If all exeptions above are not triggerd that means db is down or server is down or anything of that matter
         // so you need to handle this also by directly returning Unexpected Exceptions message as json for production
-        // If yo
+        //
 
         // from .env
         if(config('app.debug')) {
+            // this is development environment
             // display normal full info for development mode debug mode
             return parent::render($request, $exception);
         } else {
-            // this is for production
+            // this is for production environment
             return $this->errorResponse("Unexpected Exceptions. Try later", 500);
         }
 

@@ -34,7 +34,7 @@ class GalleryController extends ApiController
     }
 
     // delete http://laravel-gallery.local/api/gallery/4
-    public function destroy(Gallery $gallery)
+    public function destroy(Gallery $gallery) //implicit model binding
     {
         $gallery->delete();
         return $this->showOne($gallery, 200); // using trait

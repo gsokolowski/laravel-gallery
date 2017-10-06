@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Gallery extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes; // trait for soft deleting
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
